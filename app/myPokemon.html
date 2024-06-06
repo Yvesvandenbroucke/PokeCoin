@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pokémon</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="js/fetchContractData.js"></script>
+    <script src="js/deployContract.js"></script>
+    <script src="js/displayPokemon.js"></script>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .header {
+        font-size: 24px;
+      }
+
+      .buttons {
+        display: flex;
+      }
+
+      .buttons button {
+        margin-right: 10px;
+      }
+
+      .pokemon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .pokemon-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <div class="header">
+        <h1>My Pokémon</h1>
+      </div>
+      <div class="buttons">
+        <button onclick="window.location.href = 'buyPokemon.html'">
+          Buy Pokémon
+        </button>
+      </div>
+    </header>
+
+    <div class="pokemon-grid" id="pokemonGrid">
+      <!-- Pokémon cards will be added here -->
+    </div>
+  </body>
+</html>

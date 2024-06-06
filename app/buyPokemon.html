@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple HTML File</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="js/fetchContractData.js"></script>
+    <script src="js/deployContract.js"></script>
+    <script src="js/buyPokemon.js"></script>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .header {
+        font-size: 24px;
+      }
+
+      .buttons {
+        display: flex;
+      }
+
+      .buttons button {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="container">
+      <div class="header">
+        <h1>Pokémon Battle</h1>
+      </div>
+      <div class="buttons" id="headerButtons"></div>
+    </header>
+    <main>
+      <form id="buyPokemonForm">
+        <input
+          type="text"
+          placeholder="Enter Pokemon NickName"
+          id="pokemonName"
+        />
+        <button type="sumbit">Buy a pokemon</button>
+      </form>
+    </main>
+  </body>
+</html>
