@@ -1096,7 +1096,7 @@
   "sourceMap": "251:1789:0:-:0;;;524:98;;;;;;;;;;554:10;545:6;;:19;;;;;;;;;;;;;;;;;;609:6;;;;;;;;;;576:40;;605:1;576:40;;;;;;;;;;;;251:1789;;;;;;",
   "deployedSourceMap": "251:1789:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1330:130;;;:::i;:::-;;680:72;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;978:85;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;1624:103;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1330:130;871:9;:7;:9::i;:::-;863:18;;;;;;1425:1:::1;1388:40;;1409:6;::::0;::::1;;;;;;;;1388:40;;;;;;;;;;;;1452:1;1435:6:::0;::::1;:19;;;;;;;;;;;;;;;;;;1330:130::o:0;680:72::-;717:7;740:6;;;;;;;;;;;733:13;;680:72;:::o;978:85::-;1017:4;1051:6;;;;;;;;;;;1037:20;;:10;:20;;;1030:27;;978:85;:::o;1624:103::-;871:9;:7;:9::i;:::-;863:18;;;;;;1693:28:::1;1712:8;1693:18;:28::i;:::-;1624:103:::0;:::o;1864:173::-;1954:1;1934:22;;:8;:22;;;1926:31;;;;;;1998:8;1969:38;;1990:6;;;;;;;;;;1969:38;;;;;;;;;;;;2023:8;2014:6;;:17;;;;;;;;;;;;;;;;;;1864:173;:::o;7:126:6:-;44:7;84:42;77:5;73:54;62:65;;7:126;;;:::o;139:96::-;176:7;205:24;223:5;205:24;:::i;:::-;194:35;;139:96;;;:::o;241:118::-;328:24;346:5;328:24;:::i;:::-;323:3;316:37;241:118;;:::o;365:222::-;458:4;496:2;485:9;481:18;473:26;;509:71;577:1;566:9;562:17;553:6;509:71;:::i;:::-;365:222;;;;:::o;593:90::-;627:7;670:5;663:13;656:21;645:32;;593:90;;;:::o;689:109::-;770:21;785:5;770:21;:::i;:::-;765:3;758:34;689:109;;:::o;804:210::-;891:4;929:2;918:9;914:18;906:26;;942:65;1004:1;993:9;989:17;980:6;942:65;:::i;:::-;804:210;;;;:::o;1101:117::-;1210:1;1207;1200:12;1347:122;1420:24;1438:5;1420:24;:::i;:::-;1413:5;1410:35;1400:63;;1459:1;1456;1449:12;1400:63;1347:122;:::o;1475:139::-;1521:5;1559:6;1546:20;1537:29;;1575:33;1602:5;1575:33;:::i;:::-;1475:139;;;;:::o;1620:329::-;1679:6;1728:2;1716:9;1707:7;1703:23;1699:32;1696:119;;;1734:79;;:::i;:::-;1696:119;1854:1;1879:53;1924:7;1915:6;1904:9;1900:22;1879:53;:::i;:::-;1869:63;;1825:117;1620:329;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\n/**\r\n* @title Ownable\r\n* @dev The Ownable contract has an owner address, and provides basic authorization control\r\n* functions, this simplifies the implementation of \"user permissions\".\r\n*/\r\ncontract Ownable {\r\n  address private _owner;\r\n\r\n  event OwnershipTransferred(\r\n    address indexed previousOwner,\r\n    address indexed newOwner\r\n  );\r\n\r\n  /**\r\n  * @dev The Ownable constructor sets the original `owner` of the contract to the sender\r\n  * account.\r\n  */\r\n  constructor() {\r\n    _owner = msg.sender;\r\n    emit OwnershipTransferred(address(0), _owner);\r\n  }\r\n\r\n  /**\r\n  * @return the address of the owner.\r\n  */\r\n  function owner() public view returns(address) {\r\n    return _owner;\r\n  }\r\n\r\n  /**\r\n  * @dev Throws if called by any account other than the owner.\r\n  */\r\n  modifier onlyOwner() {\r\n    require(isOwner());\r\n    _;\r\n  }\r\n\r\n  /**\r\n  * @return true if `msg.sender` is the owner of the contract.\r\n  */\r\n  function isOwner() public view returns(bool) {\r\n    return msg.sender == _owner;\r\n  }\r\n\r\n  /**\r\n  * @dev Allows the current owner to relinquish control of the contract.\r\n  * @notice Renouncing to ownership will leave the contract without an owner.\r\n  * It will not be possible to call the functions with the `onlyOwner`\r\n  * modifier anymore.\r\n  */\r\n  function renounceOwnership() public onlyOwner {\r\n    emit OwnershipTransferred(_owner, address(0));\r\n    _owner = address(0);\r\n  }\r\n\r\n  /**\r\n  * @dev Allows the current owner to transfer control of the contract to a newOwner.\r\n  * @param newOwner The address to transfer ownership to.\r\n  */\r\n  function transferOwnership(address newOwner) public onlyOwner {\r\n    _transferOwnership(newOwner);\r\n  }\r\n\r\n  /**\r\n  * @dev Transfers control of the contract to a newOwner.\r\n  * @param newOwner The address to transfer ownership to.\r\n  */\r\n  function _transferOwnership(address newOwner) internal {\r\n    require(newOwner != address(0));\r\n    emit OwnershipTransferred(_owner, newOwner);\r\n    _owner = newOwner;\r\n  }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\vande\\Schooljaar_2023_2024_Semester 1\\erasmus\\PokeBattle\\contracts\\ownable.sol",
+  "sourcePath": "C:\\Users\\vande\\Schooljaar_2023_2024_Semester 1\\erasmus\\PokeBattle2\\PokeCoin\\contracts\\ownable.sol",
   "ast": {
     "absolutePath": "project:/contracts/ownable.sol",
     "exportedSymbols": {
@@ -2524,14 +2524,34 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x2133a7F668c6551a131CD96422717E376A9dF580",
-      "transactionHash": "0xfd3edd9bfd5d9f7322642460b1464574f9238a737fbbae7c0da261268e984420"
+      "address": "0x535E56500B0462a4581EAf68E7743F199BAbEA71",
+      "transactionHash": "0x52d14d219abfb3bfa7c3361398b2d78c95aa1f501ab5bd8917884cfdf3cdf63e"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-06-06T15:23:58.537Z",
+  "updatedAt": "2024-06-07T12:32:23.973Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "The Ownable contract has an owner address, and provides basic authorization control functions, this simplifies the implementation of \"user permissions\".",

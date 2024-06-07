@@ -22,4 +22,5 @@ contract pokeHelper is PokeToken{
         payable(owner()).transfer(msg.value);
         createPokemon(_name);
     }
+
 }

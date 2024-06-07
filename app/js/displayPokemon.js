@@ -1,33 +1,21 @@
-const contractUrl = "../build/contracts/PokeToken.json";
-
-const fetchContractData2 = async (url) => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const contractData = await response.json();
-    return contractData;
-  } catch (error) {
-    console.error("Error fetching contract data:", error);
-    return null;
-  }
-};
+const contractUrl = "../build/contracts/PokeBattle.json";
 
 const loadMyPokemon = async () => {
   try {
-    const contractData = await fetchContractData2(contractUrl);
+    const contractData = await fetchContractData(contractUrl);
     if (!contractData) {
       console.error("Contract data is null");
       return;
     }
+    const accounts = getWeb3();
 
-    const contractAddress = localStorage.getItem("contractAddress");
-    const contract = new web3.eth.Contract(contractData.abi, contractAddress);
+    const contract = new web3.eth.Contract(
+      contractData.abi,
+      contractData.networks[5777].address
+    );
 
-    const accounts = await web3.eth.getAccounts();
     const pokemonCount = await contract.methods
-      .ownerPokemonCount(accounts[0])
+      .ownerPokemonCount(accounts)
       .call();
 
     const container = document.createElement("div");

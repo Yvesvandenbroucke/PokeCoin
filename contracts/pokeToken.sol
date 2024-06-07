@@ -39,7 +39,9 @@ contract PokeToken is Ownable, RandomTypeGenerator {
     }
 
     function createPokemon(string memory _name) public {
-        require(ownerPokemonCount[msg.sender] == 0);
+        if(keccak256(bytes(_name)) == keccak256(bytes("Starter Pokemon"))){
+            require(ownerPokemonCount[msg.sender] == 0);
+        }
         uint randDna = _generateRandomDna(_name);
         _createPokemon(_name, randDna);
     }

@@ -1,5 +1,6 @@
-const contractUrl = "../build/contracts/PokeToken.json";
+const contractUrl = "../build/contracts/PokeBattle.json";
 let contractInstance;
+
 const initApp = async () => {
   try {
     const contractData = await fetchContractData(contractUrl);
@@ -7,23 +8,16 @@ const initApp = async () => {
       console.error("Contract data is null");
       return;
     }
+    //my account on ganache cause it kept asking to use my real metamask account
+    const accounts = getWeb3();
 
-    let contractAddress = localStorage.getItem("contractAddress");
+    contractInstance = new web3.eth.Contract(
+      contractData.abi,
+      contractData.networks[5777].address
+    );
 
-    if (!contractAddress) {
-      const deployedContract = await deployContract(contractData);
-      if (!deployedContract) {
-        console.error("Contract deployment failed");
-        return;
-      }
-      contractAddress = deployedContract.options.address;
-    }
-
-    contractInstance = new web3.eth.Contract(contractData.abi, contractAddress);
-
-    const accounts = await web3.eth.getAccounts();
     const output = await contractInstance.methods
-      .ownerPokemonCount(accounts[0])
+      .ownerPokemonCount(accounts)
       .call();
 
     if (output === "0") {
@@ -31,7 +25,7 @@ const initApp = async () => {
       button.textContent = "Get Starter Pokemon";
       button.onclick = async () => {
         try {
-          getStarterPokemon(contractInstance, accounts[0]);
+          getStarterPokemon(contractInstance, accounts);
         } catch (error) {
           console.error("Error getting starter pokemon:", error);
         }

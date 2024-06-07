@@ -32,7 +32,7 @@ contract PokeBattle is pokeHelper {
 
         //battle function
         address winner;
-        attackVictoryProbability = typeAdvantage(pokemon1.pType, pokemon2.pType);
+        attackVictoryProbability = 50;
         uint rand = randMod(100);
         if(attackVictoryProbability >= rand) {
             pokemon1.winCount++;
