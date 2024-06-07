@@ -17,7 +17,11 @@ To set up and run the Pokémon Battle Game, follow these steps:
 *in this example we use a python server*
     - run ´python -m http.server´
     - visit ´http://localhost:8000/app´
-5. ***Enjoy the game***
+5. ***Configuration***
+   - open the web3.js file in app
+   - return a wallet address on your ganache test env
+     ![image](https://github.com/Yvesvandenbroucke/PokeCoin/assets/152606662/bee166ac-059c-4776-a9d3-daeb166ce9d8)
+7. ***Enjoy the game***
 
  ## Code
  In this project solidity is used for the creation of the blockchain code. This paired with javescript and html made for an interactive web3js site.
